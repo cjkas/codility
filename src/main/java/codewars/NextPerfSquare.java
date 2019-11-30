@@ -1,4 +1,4 @@
-package codwars;
+package codewars;
 
 import java.util.concurrent.TimeUnit;
 
