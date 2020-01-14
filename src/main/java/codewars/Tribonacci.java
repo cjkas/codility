@@ -19,6 +19,23 @@ public class Tribonacci {
     }
 
     public static double[] solution(double[] s, int n) {
+        if (n <= 0) {
+            return new double[0];
+        }
+        double[] res = new double[n];
+        double a = s[0];
+        double b = s[1];
+        double c = s[2];
+        for (int i = 0; i < n; i++) {
+            double r = i < 3 ? s[i] : a + b + c;
+            res[i] = r;
+            if (i >= 3) {
+                a = b;
+                b = c;
+                c = r;
+            }
+        }
+        return res;
     }
 
     private
@@ -29,6 +46,9 @@ public class Tribonacci {
         assertArrayEquals(new double[]{1, 1, 1, 3, 5, 9, 17, 31, 57, 105}, solutionProfiled(new double[]{1, 1, 1}, 10), precision);
         assertArrayEquals(new double[]{0, 0, 1, 1, 2, 4, 7, 13, 24, 44}, solutionProfiled(new double[]{0, 0, 1}, 10), precision);
         assertArrayEquals(new double[]{0, 1, 1, 2, 4, 7, 13, 24, 44, 81}, solutionProfiled(new double[]{0, 1, 1}, 10), precision);
+        assertArrayEquals(new double[]{}, solutionProfiled(new double[]{0, 1, 1}, 0), precision);
+        assertArrayEquals(new double[]{0}, solutionProfiled(new double[]{0, 1, 1}, 1), precision);
+        assertArrayEquals(new double[]{0, 1, 1}, solutionProfiled(new double[]{0, 1, 1}, 3), precision);
 
     }
 }
